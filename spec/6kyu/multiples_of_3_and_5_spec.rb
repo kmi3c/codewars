@@ -6,7 +6,7 @@ describe MultiplesOf3And5, tag: '6kyu' do
       it { expect(MultiplesOf3And5.solution(10)).to eq 23 }
       it { expect(MultiplesOf3And5.solution(20)).to eq 78 }
       it { expect(MultiplesOf3And5.solution(200)).to eq 9168 }
-      it { expect(MultiplesOf3And5.solution(10).class).to eq Integer }
+      it { expect(MultiplesOf3And5.solution(10).class).to eq Fixnum }
     end
   end
 end
