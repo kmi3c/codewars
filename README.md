@@ -1,4 +1,4 @@
-Ruby Codewars 
+Ruby Codewars [![Build Status](https://travis-ci.org/kmi3c/codewars.svg?branch=master)](https://travis-ci.org/kmi3c/codewars)
 ================
 
 ### :hash: App description
