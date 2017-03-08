@@ -11,9 +11,5 @@ class MultiplesOf3And5
       end
       naturals.compact.inject(:+).to_i
     end
-
-    def to_s
-      __FILE__
-    end
   end
 end
