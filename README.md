@@ -26,9 +26,6 @@ Just my Codewars solution for Ruby training.
 
 #### :white_check_mark: To do and others ;)
 -------------
-* Prepare README.md
-* Prepare Gemfile
 * Figureout convetion for example for different scopes 6kyu, 8kuy etc, and others. Test description form CW(?) and scoping etc.
-* Confiugure rspec
 * Add and configure Travis
 * Add and configure Rubocop

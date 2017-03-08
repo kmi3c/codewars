@@ -7,7 +7,7 @@ class MultiplesOf3And5
   class << self
     def solution(number)
       naturals = (0..(number - 1)).collect do |n|
-        n if (n % 3).zero? or (n % 5).zero?
+        n if (n % 3).zero? || (n % 5).zero?
       end
       naturals.compact.inject(:+).to_i
     end
