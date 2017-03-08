@@ -28,4 +28,3 @@ Just my Codewars solution for Ruby training.
 -------------
 * Figureout convetion for example for different scopes 6kyu, 8kuy etc, and others. Test description form CW(?) and scoping etc.
 * Add and configure Travis
-* Add and configure Rubocop
