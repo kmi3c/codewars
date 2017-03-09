@@ -1,4 +1,5 @@
-require __FILE__.gsub(/_spec|\/spec/, '')
+require __FILE__.gsub(%r{_spec|\/spec}, '')
+
 describe :ArrayDiff do
   context 'Basic Tests' do
     it 'a was [1,2], b was [1], expected [2]' do
