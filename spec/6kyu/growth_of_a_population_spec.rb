@@ -1,4 +1,4 @@
-require __FILE__.gsub(/_spec|\/spec/, '')
+require __FILE__.gsub(%r{_spec|\/spec}, '')
 
 describe :GrowthOfAPopulation do
   describe('nb_year') do
