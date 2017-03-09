@@ -28,6 +28,5 @@ def dig_pow(n, p)
     sum += digit**p
     p += 1
   end
-  k = sum.to_f / n
-  k.zero? || (k.to_i != k) ? -1 : k.to_i
+  (sum % n).zero? ? sum.to_f / n : -1
 end
