@@ -37,15 +37,11 @@
 # It should be secured if the condition will never be met.
 # For example percent or aug will be < 0 so the p0 will be
 # always decreasing so while loop will be endless.
-class GrowthOfAPopulation
-  class << self
-    def nb_year(p0, percent, aug, p)
-      years = 0
-      while p0 < p
-        p0 = (p0 + p0 * (percent.to_f / 100) + aug).to_i
-        years += 1
-      end
-      years
-    end
+def nb_year(p0, percent, aug, p)
+  years = 0
+  while p0 < p
+    p0 = (p0 + p0 * (percent.to_f / 100) + aug).to_i
+    years += 1
   end
+  years
 end

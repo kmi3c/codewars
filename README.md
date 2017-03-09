@@ -18,13 +18,18 @@ Just my Codewars solution for Ruby training.
 1. git clone repository
 2. bundle install
 3. bundle exec rspec
+3. bundle exec rubocop
 
 
 #### :information_source: additional info
 -------------
-* To run test execute: `rspec`
+* Convention is that in main root there are folder with `level` (I think) name and inside are specifix examples (katas?).
+* Example file is named form CW example name in snake_word style.
+* Every example should have its own `_spec.rb` file with the same folder as its level.
 
 #### :white_check_mark: To do and others ;)
 -------------
-* Figureout convetion for example for different scopes 6kyu, 8kuy etc, and others. Test description form CW(?) and scoping etc.
-* Add and configure Travis
+
+* Do more examples ;)
+* Firgureout CW naming kata, honor etc. :P
+* Add rake example generator witch will create example file and spec file.

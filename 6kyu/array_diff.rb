@@ -8,10 +8,6 @@
 # from the other:
 #
 #   array_diff([1,2],[1]) == [2]
-class ArrayDiff
-  class << self
-    def array_diff(a, b)
-      a - b
-    end
-  end
+def array_diff(a, b)
+  a - b
 end
