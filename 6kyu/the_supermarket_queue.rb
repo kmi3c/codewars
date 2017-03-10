@@ -44,27 +44,32 @@
 # more-computer-science-related idea of a thread pool, with relation to running
 # multiple processes at the same time:
 # https://en.wikipedia.org/wiki/Thread_pool
+# =============================================================================
+# This Solution is taken from CW. Mind blowing in comparison to old one:
+# https://git.io/vywoF
+# I added comments to show thaht I know what is happening here ( I think :P )
+# and updated syntax for clearing the code and RuoCop syntax check :)
 def queue_time(customers, n)
-  # shortcircuit trivial cases
+  # Short circuit trivial cases with empty queue and one till.
   return 0 if customers.empty?
-  return customers.inject(:+) if n == 1
-  # remove zero customers
+  # Remove zero customers for less iterations for inject or main loop.
   customers.reject!(&:zero?)
-  ticks = 0
-  c_tills = {}
-  n.times { |q| c_tills[:"q#{q}"] = nil }
-  loop.with_index do |_, _i|
-    c_tills.each do |q, v|
-      if (v.nil? || v[1].zero?) && customers.any?
-        customer = customers.shift
-        c_tills[q] = [customer, customer]
-      end
-      next if c_tills[q].nil?
-      c_tills[q][1] -= 1
-      c_tills[q] = nil if c_tills[q][1] <= 0
-    end
-    ticks += 1
-    break if customers.empty? && (c_tills.values.uniq.size == 1) && c_tills.values.uniq.first.nil?
+  return customers.inject(:+) if n == 1
+  # Prepare array of tills filled with initial 0 values
+  tills = Array.new(n, 0)
+  # Simulate customers visiting till in order.
+  # There is no need to emulate each time/tick because each visit takes
+  # time value of customer so next customer will always visit till with
+  # the lowest value :) Awesome!
+  (0..(customers.length - 1)).each do |i|
+    # Customer visits till with lowest value in other words - assign value of
+    # customer to the till array with index of the lowest value.
+    # Values are incremented because we want to know the whole time spend in
+    # tills :)
+    tills[tills.index(tills.min)] += customers[i]
   end
-  ticks
+  # Maximum value from tills array will be the answer because the whole time
+  # spend in tills will be the maximum time. In other words if other tills have
+  # lower value it means that it ended earlier and waited empty :)
+  tills.max
 end
