@@ -1,5 +1,7 @@
-Ruby Codewars [![Build Status](https://travis-ci.org/kmi3c/codewars.svg?branch=master)](https://travis-ci.org/kmi3c/codewars)
+Ruby Codewars 
 ================
+[![](https://www.codewars.com/users/kmi3c/badges/micro)](https://www.codewars.com/users/kmi3c)
+[![Build Status](https://travis-ci.org/kmi3c/codewars.svg?branch=master)](https://travis-ci.org/kmi3c/codewars)
 
 ### :hash: App description
 -------------
