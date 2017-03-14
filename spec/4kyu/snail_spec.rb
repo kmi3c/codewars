@@ -1,12 +1,13 @@
 require __FILE__.gsub(%r{_spec|\/spec}, '')
 
 def test(input, expected)
-  output = snail(input)
-  it { expect(output).to eq expected }
+  it { expect(snail(input)).to eq expected }
 end
 
-describe :Snail do
-  context 'static snails ;)' do
+describe :AwesomeSnail do
+  context 'Awesome static snails ;)' do
+    test( [[]] , [] )
+    test( [[1]], [1])
     test([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [1, 2, 3, 6, 9, 8, 7, 4, 5])
     test([[1, 2, 3], [8, 9, 4], [7, 6, 5]], [1, 2, 3, 4, 5, 6, 7, 8, 9])
     test(
