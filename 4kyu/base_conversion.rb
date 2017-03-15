@@ -34,6 +34,9 @@
 # * The function must work for any arbitrary alphabets, not only the pre-defined
 #   ones
 # * You don't have to consider negative numbers
-def convert(_input, _source, _target)
-  '1111'
+def convert(input, _source, _target)
+  digits = input.split('')
+  # base = target.size
+  digits.each do |d|
+  end
 end
