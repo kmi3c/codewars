@@ -4,7 +4,6 @@ require 'simplecov'
 require 'rspec'
 SimpleCov.start
 RSpec.configure do |config|
-  #  config.run_all_when_everything_filtered = false
-  #  config.filter_run :focus
+  config.filter_run_excluding broken: true
   config.order = 'random'
 end
