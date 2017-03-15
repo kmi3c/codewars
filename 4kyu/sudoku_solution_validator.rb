@@ -41,11 +41,13 @@
 # Example 2 should returns false
 def valid_solution?(sudoku)
   valid = true
+  # check all [ rows, columns, subgrids ]
   [sudoku, sudoku.transpose, subgrids(sudoku)].each do |g|
     g.each do |row|
       v = grid_valid?(row)
       valid = v unless v
     end
+    # brake if any is invalid
     break unless valid
   end
   valid
@@ -58,7 +60,7 @@ def subgrids(sudoku)
 end
 
 def grid_valid?(array)
-  array.inject(:+) == 45 && array.uniq.size == 9
+  array.sort == (1..9).to_a
 end
 
 alias validSolution valid_solution?
