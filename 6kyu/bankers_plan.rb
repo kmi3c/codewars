@@ -52,11 +52,11 @@
 # convert it to 0.02.
 #
 def fortune(f0, p, c0, n, i)
-  p = (p.to_f / 100)
-  i = (i.to_f / 100)
+  p /= 100.0
+  i /= 100.0
   (1..n - 1).each do |_year|
-    f0 = (f0 + p * f0 - c0).to_i
-    c0 = (c0 + c0 * i).to_i
+    f0 += (p * f0 - c0).floor
+    c0 += (c0 * i).floor
     return false if f0.negative?
   end
   true
