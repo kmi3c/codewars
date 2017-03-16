@@ -19,7 +19,7 @@
 #   findNb(91716553919377) --> -1
 def find_nb(m)
   n = 0
-  until m < 0
+  while m.positive?
     n += 1
     m -= n**3
   end
