@@ -19,11 +19,9 @@
 #   findNb(91716553919377) --> -1
 def find_nb(m)
   n = 0
-  cubes = 0
-  until cubes == m
-    break if cubes > m
-    cubes += n**3
+  until m < 0
     n += 1
+    m -= n**3
   end
-  cubes == m ? n - 1 : -1
+  m.zero? ? n : -1
 end
