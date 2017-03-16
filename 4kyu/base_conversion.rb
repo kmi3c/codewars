@@ -34,9 +34,43 @@
 # * The function must work for any arbitrary alphabets, not only the pre-defined
 #   ones
 # * You don't have to consider negative numbers
-def convert(input, _source, _target)
-  digits = input.split('')
-  # base = target.size
-  digits.each do |d|
+# =============================================================================
+# My Idea and solution is to tak any input base to decmial and convert it to
+# any target base.
+# Inspired by:
+# http://www.cs.trincoll.edu/~ram/cpsc110/inclass/conversions.html
+
+DEC = '0123456789'.freeze
+
+def convert(input, source, target)
+  return input if source == target
+  return to_decimal(input, source).to_s if target == DEC
+  to_target(target, to_decimal(input, source))
+end
+
+# Convert any input to decimal value using thin mathematical formula:
+# (d0 * b^n-1) + (d1 * b^n-2) ... (dx * b^n=0)
+def to_decimal(input, source)
+  return input.to_i if source == DEC
+  base = source.size
+  n = input.size - 1
+  input.split('').collect.with_index do |digit, i|
+    source.index(digit) * (base**(n - i))
+  end.inject(:+).to_i
+end
+
+def to_target(target, decimal)
+  # Just to know that Ruby have built in conversion to common bases
+  # use it instead of ours for (2,8,10,16) ;)
+  return decimal.to_s(target.size) if [2, 8, 10, 16].include? target.size
+  # Otherwise use our own conversion :)
+  return target[0] if decimal.zero?
+  base = target.size
+  result = ''
+  decimal.to_f
+  while decimal != 0
+    result += target[(decimal % base)]
+    decimal /= base
   end
+  result.reverse
 end
