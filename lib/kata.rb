@@ -2,7 +2,7 @@ require 'watir'
 require 'open-uri'
 require 'nokogiri'
 require 'fileutils'
-URL = 'https://www.codewars.com/kata/'.freeze
+URL = 'https://www.codewars.com/kata'.freeze
 LANG = 'ruby'.freeze
 WD_PATH = '/usr/lib/chromium-browser/libs/chromedriver'.freeze
 ROOT = File.dirname(__FILE__).gsub('lib', '').freeze
@@ -19,8 +19,8 @@ module Kata
   class << self
   def generate(kata, desc = '')
     name, dir = *split_kata(kata)
-    %w(_ _spec_).each.collect do |temp|
-      f = File.open("#{ROOT}/lib/generator/kata#{temp}template.rb").read
+    ['', '_spec'].each.collect do |temp|
+      f = File.open("#{ROOT}/lib/generator/kata#{temp}_template.rb").read
       f.gsub!('kata_function', name)
       f.gsub!('kata_description', desc) unless desc.empty?
       kfile = "#{ROOT}/#{temp.tr('_', '')}/#{dir}/#{name}#{temp}.rb"
@@ -31,15 +31,14 @@ module Kata
   end
 
   def scrape(kata)
-    kata_url = [URL, kata, lang].join('/')
-    kata, dir = *split_kata(kata)
-    browser = ::Watir::Browser.new.goto(kata_url)
+    name, dir = *split_kata(kata)
+    kata_url = [URL, kata.split('/')[1], LANG].join('/')
     generate(
-      "#{dir}/#{kata}".join('/'),
-      parse_description(
-        ::Nokogiri::HTML(browser.html).doc.css('#description').text,
-        kata_url
-      )
+      "#{dir}/#{name}",
+      parse_description([
+        "@url:#{kata_url}\n",
+        get_description(kata_url)
+      ].join)
     )
   end
 
@@ -49,10 +48,16 @@ module Kata
     [name.tr('-', '_'), dir]
   end
 
+  def get_description(kata_url)
+    browser = ::Watir::Browser.new
+    browser.goto(kata_url)
+    ::Nokogiri::HTML(browser.html).css('#description').text
+  end
+
   def parse_description(desc)
     desc.lines.map do |line|
-      line.gsub(/(.{1,80})(\s+|\Z)/, "\\1\n# ")
-    end
+      line.gsub(/(.{1,78})(\s+|\Z)/, "\\1\n# ")
+    end.join
   end
   end
 end
