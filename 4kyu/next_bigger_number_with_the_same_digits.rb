@@ -10,5 +10,11 @@
 # nextBigger(531)==-1
 #
 def next_bigger(n)
-  # your code
+  digits = n.to_s.chars
+  return -1 if digits.uniq.size == 1
+  perms = digits.permutation(digits.size).collect do |perm|
+    m = perm.join.to_i
+    perm.join.to_i if m > n
+  end
+  perms.min || -1
 end
