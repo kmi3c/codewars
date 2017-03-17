@@ -32,5 +32,6 @@
 # Note for C
 # The two arrays have the same size (> 0) given as parameter in function comp.
 def comp(arr1, arr2)
-  # your code
+  return false if arr1.nil? || arr2.nil?
+  arr1.sort.map { |a| a**2 } == arr2.sort
 end
