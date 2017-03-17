@@ -28,8 +28,27 @@
 # brute-force method is a bad idea unless you have a few centuries to waste.
 # You must come up with something more clever than that.
 #
-# (c) This task is a lyrical version of the Problem 18 and/or Problem 67 on
+# (c) This task is a lyrical version of the Problem #18 and/or Problem #67 on
 # ProjectEuler. https://projecteuler.net/
-def longest_slide_down(pyramid)
-  pyramid.sample
+# #18 https://projecteuler.net/problem=18
+# #67 https://projecteuler.net/problem=67
+# link to large pyramid from Problem #67:
+# https://projecteuler.net/project/resources/p067_triangle.txt
+# ================================ Solution ===================================
+# Start from bottom of the pyramid. Take it's row and add highest possible sum
+# (with valid slide/path)to each cell above. Repeat until top of the pyramid
+# is reached. With this solution seeking sum should be in the tip of the
+# pyramid. Because we always sum the highest possible number from previous row
+# we are suming previous sums. (if that makes sense in english xD)
+# @todo: reduce ABC size.
+def longest_slide_down(pyramid) # rubocop:disable Metrics/AbcSize
+  (pyramid.size - 2).downto(0) do |row|
+    0.upto(pyramid[row].size - 1) do |col|
+      pyramid[row][col] += [
+        pyramid[row + 1][col] || 0,
+        pyramid[row + 1][col + 1] || 0
+      ].max
+    end
+  end
+  pyramid[0][0]
 end
